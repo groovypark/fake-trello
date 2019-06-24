@@ -1,0 +1,7 @@
+const REACT_APP_LINE_CHANNEL_ID = process.env.REACT_APP_LINE_CHANNEL_ID;
+const REACT_APP_LINE_CHANNEL_SECRET = process.env.REACT_APP_LINE_CHANNEL_SECRET;
+
+export const lineConfig = {
+  channelId: REACT_APP_LINE_CHANNEL_ID,
+  channelSecret: REACT_APP_LINE_CHANNEL_SECRET
+};
