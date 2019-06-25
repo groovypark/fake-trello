@@ -4,6 +4,7 @@ import URI from "urijs";
 import {signinWithLine, getUserFromCode} from "./signin/singin";
 import {BrowserRouter as Router, Route, RouteComponentProps, Link, Redirect} from "react-router-dom";
 import Session from "./session/Session";
+import {lineConfig} from "./config/line-config";
 
 const Signin = (props: RouteComponentProps) => {
   return (
@@ -22,8 +23,8 @@ const SigninWithLineCallback = (props: RouteComponentProps) => {
     } = props;
     const {code, state} = (URI(location.search).query(true) as any);
 
-    if (state !== "LINEISTHEBEST") {
-      throw new Error("state should be LINEISTHEBEST")
+    if (state !== lineConfig.lineStateCode) {
+      throw new Error(`state should be ${lineConfig.lineStateCode}`)
     }
 
     getUserFromCode(code).then(user => {
