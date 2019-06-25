@@ -5,9 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {combineReducers, createStore} from 'redux';
-import boardReducer from './board/reducers/boardReducer';
+import boardReducer from './kanbanboard/reducers/kanbanboardReducer';
 import {Provider} from 'react-redux';
-import dashboardReducer from './board/reducers/dashboardReducer';
+import dashboardReducer from './dashboard/reducers/dashboardReducer';
 
 const rootReducer = combineReducers({
   boardReducer,

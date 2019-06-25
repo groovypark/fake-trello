@@ -38,20 +38,20 @@ export const removeCard = (card: Card) => {
   }) as const;
 };
 
-type BoardActions = ReturnType<typeof loadCards>
+type KanbanboardActions = ReturnType<typeof loadCards>
   | ReturnType<typeof createCard>
   | ReturnType<typeof updateCard>
   | ReturnType<typeof removeCard>
 
-export type BoardState = {
+export type KanbanboardState = {
   cards: Card[]
 }
 
-const initialState: BoardState = {
+const initialState: KanbanboardState = {
   cards: []
 };
 
-function boardReducer(state: BoardState = initialState, action: BoardActions)  {
+function kanbanboardReducer(state: KanbanboardState = initialState, action: KanbanboardActions)  {
   switch (action.type) {
     case LOAD_ACTION:
       return {
@@ -76,4 +76,4 @@ function boardReducer(state: BoardState = initialState, action: BoardActions)  {
   return state
 }
 
-export default boardReducer;
+export default kanbanboardReducer;

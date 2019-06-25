@@ -1,4 +1,3 @@
-import {RouteComponentProps} from "react-router";
 import {signinWithLine} from "./singin";
 import React from "react";
 
