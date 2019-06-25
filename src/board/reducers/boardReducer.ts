@@ -1,9 +1,9 @@
-import {Card} from "../type/Card";
+import {Card} from "../../type/Card";
 
-export const LOAD_ACTION   = 'cards/LOAD_ACTION';
-export const CREATE_ACTION = 'cards/CREATE_ACTION';
-export const UPDATE_ACTION = 'cards/UPDATE_ACTION';
-export const REMOVE_ACTION = 'cards/REMOVE_ACTION';
+export const LOAD_ACTION   = 'board/LOAD_ACTION';
+export const CREATE_ACTION = 'board/CREATE_ACTION';
+export const UPDATE_ACTION = 'board/UPDATE_ACTION';
+export const REMOVE_ACTION = 'board/REMOVE_ACTION';
 
 export const loadCards = () => {
   return ({
@@ -38,11 +38,10 @@ export const removeCard = (card: Card) => {
   }) as const;
 };
 
-type CardActions = ReturnType<typeof loadCards>
+type BoardActions = ReturnType<typeof loadCards>
   | ReturnType<typeof createCard>
   | ReturnType<typeof updateCard>
   | ReturnType<typeof removeCard>
-
 
 export type BoardState = {
   cards: Card[]
@@ -52,7 +51,7 @@ const initialState: BoardState = {
   cards: []
 };
 
-function board(state: BoardState = initialState, action: CardActions)  {
+function boardReducer(state: BoardState = initialState, action: BoardActions)  {
   switch (action.type) {
     case LOAD_ACTION:
       return {
@@ -77,4 +76,4 @@ function board(state: BoardState = initialState, action: CardActions)  {
   return state
 }
 
-export default board;
+export default boardReducer;

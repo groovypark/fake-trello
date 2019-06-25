@@ -1,74 +1,34 @@
 import React from 'react';
 import './App.css';
-import URI from "urijs";
-import {signinWithLine, getUserFromCode} from "./signin/singin";
-import {BrowserRouter as Router, Route, RouteComponentProps, Link, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, RouteComponentProps} from "react-router-dom";
 import Session from "./session/Session";
-import {lineConfig} from "./config/line-config";
+import SigninPage from "./signin/SigninPage";
+import SigninWithLineCallbackPage from "./signin/SigninWithLineCallbackPage";
 
-const Signin = (props: RouteComponentProps) => {
+const Index = () => {
+  const user = Session.user;
+  if (user === null) {
+    return (
+      <SigninPage/>
+    )
+  }
   return (
-    <div>
-      <h1>Signin</h1>
-      <button onClick={signinWithLine}>Line</button>
-    </div>
-  )
-}
-
-const SigninWithLineCallback = (props: RouteComponentProps) => {
-  React.useEffect(() => {
-    const {
-      history,
-      location
-    } = props;
-    const {code, state} = (URI(location.search).query(true) as any);
-
-    if (state !== lineConfig.lineStateCode) {
-      throw new Error(`state should be ${lineConfig.lineStateCode}`)
-    }
-
-    getUserFromCode(code).then(user => {
-      Session.setUser(user);
-      history.push("/")
-    })
-
-  }, []);
-  return (
-    null
+    <Redirect to={`/${user.userId}/boards`}/>
   )
 };
 
-const Index = (props: RouteComponentProps) => {
-  const user = Session.user;
-
-  const signOut = () => {
-    Session.removeUser();
-    const {
-      history
-    } = props;
-    history.push("/signin");
-  };
-
-  if (user !== null) {
-    return (
-      <div>
-        {user.displayName} {user.userId} 환영합니다.🤪
-        <button onClick={signOut}>SignOut</button>
-      </div>
-    )
-  }
-
+const Boards = () => {
   return (
-    <Redirect to="/signin"/>
+    <div>Boards</div>
   )
 };
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Route path="/signin" exact component={Signin} />
-      <Route path="/signin/line" exact component={SigninWithLineCallback} />
+      <Route path="/signin/line" exact component={SigninWithLineCallbackPage} />
       <Route path="/" exact component={Index} />
+      <Route path="/:userId/boards" component={Boards} />
     </Router>
   );
 };

@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {createStore} from 'redux';
-import reducers from './reducers';
+import {combineReducers, createStore} from 'redux';
+import boardReducer from './board/reducers/boardReducer';
 import {Provider} from 'react-redux';
+import dashboardReducer from './board/reducers/dashboardReducer';
 
-const store = createStore(reducers);
+const rootReducer = combineReducers({
+  boardReducer,
+  dashboardReducer
+});
+
+const store = createStore(rootReducer);
 
 ReactDOM.render((
   <Provider store={store}>
