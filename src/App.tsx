@@ -35,7 +35,7 @@ const SigninWithLineCallback = (props: RouteComponentProps) => {
   return (
     null
   )
-}
+};
 
 const Index = (props: RouteComponentProps) => {
   const user = Session.user;
@@ -46,12 +46,12 @@ const Index = (props: RouteComponentProps) => {
       history
     } = props;
     history.push("/signin");
-  }
+  };
 
   if (user !== null) {
     return (
       <div>
-        {user.displayName} {user.userId} 환영합니다.🤪 
+        {user.displayName} {user.userId} 환영합니다.🤪
         <button onClick={signOut}>SignOut</button>
       </div>
     )
@@ -60,7 +60,7 @@ const Index = (props: RouteComponentProps) => {
   return (
     <Redirect to="/signin"/>
   )
-}
+};
 
 const App: React.FC = () => {
   return (
@@ -70,6 +70,6 @@ const App: React.FC = () => {
       <Route path="/" exact component={Index} />
     </Router>
   );
-}
+};
 
 export default App;
