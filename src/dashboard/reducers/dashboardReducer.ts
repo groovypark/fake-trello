@@ -1,35 +1,57 @@
 import { Kanbanboard } from "../../type/Kanbanboard";
+import {User} from "../../type/User";
 
-export const ADD_KANBANBOARD_ACTION = "dashboard/ADD_KANBANBOARD_ACTION";
+export const LOAD_KANBANBOARD_LIST = "dashboard/LOAD_KANBANBOARD_LIST";
+export const LOAD_USER = "dashboard/LOAD_USER";
 
-export const addKanbanboard = (kanbanboard: Kanbanboard) => {
+export const loadKanbanboardList = (kanbanboardList: Kanbanboard[]) => {
   return ({
-    type: ADD_KANBANBOARD_ACTION,
+    type: LOAD_KANBANBOARD_LIST,
     payload: {
-      kanbanboard
+      kanbanboardList
     }
   }) as const
 };
 
-type DashboardAction = ReturnType<typeof addKanbanboard>
+export const loadUser = (user: User) => {
+  return ({
+    type: LOAD_USER,
+    payload: {
+      user
+    }
+  }) as const
+};
+
+type DashboardAction = ReturnType<typeof loadKanbanboardList> | ReturnType<typeof loadUser>
 
 export type DashboardState = {
-  kanbanboards: Kanbanboard[]
+  kanbanboardList: Kanbanboard[]
+  user: User | null;
 }
 
 const initialState: DashboardState = {
-  kanbanboards: []
+  kanbanboardList: [],
+  user: null
 };
 
 function dashboardReducer(state: DashboardState = initialState, action: DashboardAction) {
   switch (action.type) {
-    case ADD_KANBANBOARD_ACTION: {
+    case LOAD_KANBANBOARD_LIST: {
       const {
-        kanbanboard
+        kanbanboardList
       } = action.payload;
       return {
-        ...state, 
-        kanbanboards: [...state.kanbanboards, kanbanboard]
+        ...state,
+        kanbanboardList
+      }
+    }
+    case LOAD_USER: {
+      const {
+        user
+      } = action.payload;
+      return {
+        ...state,
+        user
       }
     }
   }

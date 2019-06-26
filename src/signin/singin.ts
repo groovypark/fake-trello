@@ -16,8 +16,7 @@ export const signinWithLine = () => {
     client_id: lineConfig.channelId,
     redirect_uri: redirectUri,
     state,
-    scope: "openid%20profile"
-
+    scope: "openid profile"
   }).readable();
   window.location.href = url
 };
@@ -34,6 +33,7 @@ type TokenResponse = {
 type ProfileResponse = {
   displayName: string
   userId: string
+  pictureUrl?: string
 }
 
 export const getUserFromCode = async (code: string): Promise<User> => {
@@ -60,11 +60,13 @@ export const getUserFromCode = async (code: string): Promise<User> => {
   
   const {
     displayName,
-    userId
-  } = profileResponse.data
+    userId,
+    pictureUrl
+  } = profileResponse.data;
 
   return {
     displayName,
-    userId
+    userId,
+    pictureUrl
   }
-}
+};
