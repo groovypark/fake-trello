@@ -10,7 +10,7 @@ const LINE_PROFILE_URL = "https://api.line.me/v2/profile";
 export const signinWithLine = () => {
   const redirectUri = URI(window.location.href).query({}).pathname("/signin/line").readable();
 
-  const state = "LINEISTHEBEST"
+  const state = lineConfig.lineStateCode;
   const url = URI(LINE_AUTHORIZE_URL).query({
     response_type: "code",
     client_id: lineConfig.channelId,
