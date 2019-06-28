@@ -32,13 +32,13 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
   return (
     <div className="board">
       <h1>{kanbanboard.title}</h1>
-      {kanbanboard.columns.sort(column => column.order).map(column => {
+      {kanbanboard.columns.map((column, i) => {
         return (
-          <div className="column" key={column.id}>
+          <div className="column" key={i}>
             <h2>{column.title}</h2>
-            {column.cards.sort(card => card.order).map(card => {
+            {column.cards.map((card, i) => {
               return (
-                <div className="card" key={card.id}>
+                <div className="card" key={i}>
                   <h3>{card.title}</h3>
                   {card.description}
                   {card.comment.map((comment, i) => {
