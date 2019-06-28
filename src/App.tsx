@@ -5,6 +5,7 @@ import Session from "./session/Session";
 import SigninPage from "./signin/SigninPage";
 import SigninWithLineCallbackPage from "./signin/SigninWithLineCallbackPage";
 import Dashboard from "./Dashboard";
+import KanbanboardComp from "./KanbanboardComp";
 
 const Index = () => {
   const user = Session.user;
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         <Route path="/signin/line" exact component={SigninWithLineCallbackPage} />
         <Route path="/" exact component={Index} />
         <Route path="/users/:userId/dashboard" component={Dashboard} />
+        <Route path="/board/:kanbanboardId" component={KanbanboardComp} />
         <Route component={NotFound}/>
       </Switch>
     </Router>

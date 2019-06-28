@@ -17,30 +17,78 @@
     height: 30px;
 }
 
+.profile {
+    border-radius: 100%;
+    float: right;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    width: 110px;
+
+    border-radius: 3px;
+    box-shadow: 0 8px 16px -4px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
+    box-sizing: border-box;
+    outline: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content {
+    padding: 10px;
+    color: #172b4d;
+}
+
+img.profile:hover .profile-dropdown {
+    cursor: pointer;
+    display: block;
+}
+
+.signout:hover {
+    background: #298FCA;
+    color: white;
+    cursor: pointer;
+}
+
 .board-list {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+
+    flex: 1 1 100%;
+    min-width: 352px;
+    padding-left: 4%;
+    padding-right: 20px;
+
+    margin-top: 110px;
 }
+
 .board-list-item {
+    text-decoration: none;
     background-color: rgb(0, 121, 191);
     color: #fff;
-    width: 32%;
     height: 96px;
-    margin: 0 2% 8px 0;
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 3px;
+
+    max-width: 1250px;
+
+    width: 48%;
+    margin-right: 2%;
 }
 
-.signout-btn {
+.delete-btn {
+    background: none;
     float: right;
-    background-color: #E2E4E6;
-    border-radius: .4em;
-    box-shadow: 0 2px 0 #CDD2D4;
-    color: hsl(0,0%,30%);
-    display: inline-block;
-    font-size: .8em;
-    line-height: 1.1em;
-    margin: -.4em .25em;
-    padding: .7em 1.3em;
-    text-decoration: none;
+    margin-right: 5px;
+    font-size: 18px;
+}
+.delete-btn:hover {
+    font-weight: bolder;
 }

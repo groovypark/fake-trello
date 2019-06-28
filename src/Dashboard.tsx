@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {DashboardState, loadKanbanboardList, loadUser} from "./dashboard/reducers/dashboardReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {getKanbanboards} from "./dashboard/getKanbanboards";
+import {getKanbanboardList} from "./dashboard/getKanbanboardList";
 import Session from "./session/Session";
 import {Kanbanboard} from "./type/Kanbanboard";
 import {addKanbanboardToDb} from "./dashboard/addKanbanboardToDb";
@@ -12,6 +12,7 @@ import {signOut} from "./signin/signout";
 import {RouteComponentProps} from "react-router";
 import {deleteKanbanboardFromDb} from "./dashboard/deleteKanbanboardFromDb";
 import {getUser} from "./dashboard/getUser";
+import {Link} from "react-router-dom";
 
 
 const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
@@ -27,7 +28,7 @@ const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getKanbanboards(userId).then(kanbanboardList => {
+    getKanbanboardList(userId).then(kanbanboardList => {
       dispatch(loadKanbanboardList(kanbanboardList))
     });
     getUser(userId).then(user => {
@@ -36,60 +37,77 @@ const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
   }, []);
 
   const isMasterUser = !!Session.user && Session.user.userId === userId;
-  const deleteKanbanboard = (kanbanboard: Kanbanboard) => async () => {
+  const deleteKanbanboard = (kanbanboard: Kanbanboard) => async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     if (!window.confirm(`${kanbanboard.title}보드를 삭제하시겠습니까?`)) {
       return;
     }
     await deleteKanbanboardFromDb(kanbanboard.id as string);
-    getKanbanboards(userId).then(kanbanboardList => {
+    getKanbanboardList(userId).then(kanbanboardList => {
       dispatch(loadKanbanboardList(kanbanboardList))
     })
   };
+
+  const [isDropdownHidden, setIsDropdownHidden] = useState(true);
+  const toggleDropdown = () => {
+    setIsDropdownHidden(!isDropdownHidden)
+  };
+
   return (
     <div>
       <div className="header">
         <a><img className="logo"
-             src={logoGray}
-             onMouseOver={e => (e.currentTarget.src = logoWhite)}
-             onMouseOut={e => (e.currentTarget.src = logoGray)}
-             alt="fake-trello-logo"
+                src={logoGray}
+                onMouseOver={e => (e.currentTarget.src = logoWhite)}
+                onMouseOut={e => (e.currentTarget.src = logoGray)}
+                alt="fake-trello-logo"
         /></a>
-        <button className="signout-btn" onClick={() => signOut(history)}>Sign Out</button>
-      </div>
-
-      <h1>Dashboard</h1>
-      {!!dashboardState.user ? (
-        <div>
-          {!!dashboardState.user.pictureUrl ? (
-            <div>
-              <img src={dashboardState.user.pictureUrl} alt="" width={100}/>
-            </div>
-          ) : null}
-          <h1>{dashboardState.user.displayName}님의 대시보드</h1>
-        </div>
-      ) : null}
-      <div>
-        {dashboardState.kanbanboardList.map((kanbanboard, i) => {
-          return (
-            <div className="board-list" key={kanbanboard.id}>
-              <div className="board-list-item" key={i}>
-                {i} {kanbanboard.userDisplayName}님의 칸반보드: {kanbanboard.title}
-                {isMasterUser ? (
-                  <button onClick={deleteKanbanboard(kanbanboard)}>
-                    Delete
-                  </button>
-                ) : null}
-              </div>
-            </div>
-          )
-        })}
-        {isMasterUser ? (
-          <AddKanbanboard
-            userId={userId}
-          />
+        {!!dashboardState.user ? (
+          <span>
+            {!!dashboardState.user.pictureUrl ? (
+              <img className="profile"
+                   src={dashboardState.user.pictureUrl}
+                   alt="" width={30}
+                   onClick={toggleDropdown}
+              />
+            ) : null}
+          </span>
         ) : null}
       </div>
 
+      {isDropdownHidden ? null : (
+        <div>
+          {!!dashboardState.user ? (
+            <div className="profile-dropdown">
+              <div className="dropdown-content">{dashboardState.user.displayName}</div>
+              <div className="dropdown-content signout"><span onClick={() => signOut(history)}>Sign Out</span></div>
+            </div>
+          ) : null}
+        </div>
+      )}
+
+      <div className="board-list">
+        {dashboardState.kanbanboardList.map((kanbanboard, i) => {
+          return (
+            <Link to={`/board/${kanbanboard.id}`} className="board-list-item" key={kanbanboard.id}>
+                {isMasterUser ? (
+                  <button className="delete-btn" onClick={deleteKanbanboard(kanbanboard)}>
+                    x
+                  </button>
+                ) : null}
+
+                <h2>{kanbanboard.title}</h2>
+                <div>{kanbanboard.userDisplayName}님의 칸반보드</div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {isMasterUser ? (
+        <AddKanbanboard
+          userId={userId}
+        />
+      ) : null}
     </div>
   )
 };
@@ -119,7 +137,7 @@ const AddKanbanboard: React.FC<{ userId: string }> = (props) => {
     };
     setTitle("");
     await addKanbanboardToDb(newKanbanboard);
-    getKanbanboards(userId).then(kanbanboardList => {
+    getKanbanboardList(userId).then(kanbanboardList => {
       dispatch(loadKanbanboardList(kanbanboardList))
     });
     alert("Kanbanboard가 추가되었습니다.");

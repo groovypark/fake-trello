@@ -1,0 +1,21 @@
+.column {
+    width: 272px;
+    margin: 0 4px;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    background: gray;
+
+    padding: 10px;
+}
+
+.card {
+    overflow: hidden;
+    padding: 6px 8px 2px;
+    position: relative;
+    background: white;
+
+    margin: 10px 0;
+}

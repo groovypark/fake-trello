@@ -1,5 +1,8 @@
 import {Card} from "./Card";
 
 export type Column = {
-  cards: Card[]
+  title: string,
+  cards: Card[],
+  order: number,
+  id?: string
 }

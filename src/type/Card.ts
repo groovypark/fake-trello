@@ -1,9 +1,10 @@
 export type Card = {
+  id?: string
+  order: number
   title: string
   description: string
   checklist: string[]
   comment: string[]
-  due: string
-  date: string
-  attachment: string[]
+  dueDate: string
+  attachments: string[]
 }
