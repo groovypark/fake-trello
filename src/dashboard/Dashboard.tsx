@@ -93,7 +93,7 @@ const AddKanbanboard: React.FC<{ userId: string }> = (props) => {
     if (user === null) {
       throw new Error("user should not be null");
     }
-    if (title.trim().length == 0) {
+    if (title.trim().length === 0) {
       return
     }
     const newKanbanboard: Kanbanboard = {
@@ -116,7 +116,7 @@ const AddKanbanboard: React.FC<{ userId: string }> = (props) => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
 
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleClick();
     }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import {Card} from "../../type/Card";
+import Session from "../../session/Session";
 
 export const AddCheck: React.FC<{ card: Card, handleSave: (card: Card) => void }> = ({card, handleSave}) => {
   const [value, setValue] = useState("");
@@ -9,14 +10,22 @@ export const AddCheck: React.FC<{ card: Card, handleSave: (card: Card) => void }
   };
 
   const handleClick = () => {
+    if (Session.user === null) {
+      alert("로그인 해주세요");
+      return;
+    }
+    if (!value) {
+      return;
+    }
     const {
       checklist
     } = card;
     const updatedCard: Card = {
       ...card,
-      checklist: [...checklist, {value, checked: false}]
+      checklist: [...checklist, {value, checked: false, user: Session.user}]
     };
     handleSave(updatedCard);
+    setValue("");
   };
 
   return (

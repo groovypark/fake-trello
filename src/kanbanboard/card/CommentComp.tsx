@@ -22,11 +22,26 @@ export const CommentComp: React.FC<{ card: Card, handleSave: (card: Card) => voi
   };
 
 
-  const handleClick = () => {
+  const handleClick = (e: React.SyntheticEvent) => {
     const {
       comments
     } = card;
+    e.preventDefault();
     comments[commentIndex].value = commentInput;
+    const updatedCard: Card = {
+      ...card,
+      comments
+    };
+    handleSave(updatedCard);
+    setEditing(false);
+  };
+
+  const handleDelete = (e: React.SyntheticEvent) => {
+    const {
+      comments
+    } = card;
+    e.preventDefault();
+    comments.splice(commentIndex, 1);
     const updatedCard: Card = {
       ...card,
       comments
@@ -41,6 +56,7 @@ export const CommentComp: React.FC<{ card: Card, handleSave: (card: Card) => voi
         <input type="text" value={commentInput} onChange={handleChange}/>
         <button onClick={handleEditMode}>Cancel</button>
         <button onClick={handleClick}>Save</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     )
   }

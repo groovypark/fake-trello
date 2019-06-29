@@ -14,6 +14,9 @@ export const AddComment: React.FC<{ card: Card, handleSave: (card: Card) => void
       alert("로그인 해주세요");
       return;
     }
+    if (!comment) {
+      return;
+    }
     const {
       comments
     } = card;
@@ -22,6 +25,7 @@ export const AddComment: React.FC<{ card: Card, handleSave: (card: Card) => void
       comments: [...comments, {value: comment, user: Session.user}]
     };
     handleSave(updatedCard);
+    setComment("");
   };
 
   return (

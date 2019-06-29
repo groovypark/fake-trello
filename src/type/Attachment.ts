@@ -1,3 +1,7 @@
+import {User} from "./User";
+
 export type Attachment = {
-  url: string
+  url: string,
+  user: User,
+  type: string
 }

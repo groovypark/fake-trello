@@ -1,6 +1,7 @@
 import {Card} from "../type/Card";
 import db from "../database/db";
 import Session from "../session/Session";
+import * as firebase from "firebase";
 
 export const addCard = async (kanbanboardId: string, columnIndex: number, title: string) => {
   const user = Session.user;
@@ -13,7 +14,7 @@ export const addCard = async (kanbanboardId: string, columnIndex: number, title:
     description: "",
     checklist: [],
     comments: [],
-    dueDate: "", // FIXME
+    dueDate: firebase.firestore.Timestamp.now(),
     attachments: [],
     user: user
   };

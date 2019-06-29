@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "../kanbanboardReducer";
 import {subscribeKanbanboard, UnsubscribeFn} from "../subscribeKanbanboard";
 import {Card} from "../../type/Card";
-import {Attachment} from "../../type/Attachment";
 import Session from "../../session/Session";
 import {updateCard} from "../updateCard";
 import {Title} from "./Title";
@@ -13,6 +12,9 @@ import {Description} from "./Description";
 import {Checklist} from "./CheckList";
 import {Comments} from "./Comments";
 import {UserInfo} from "./UserInfo";
+import {DueDate} from "./DueDate";
+import {Attachments} from "./Attachments";
+import Header from "../../Header";
 
 const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
   const {
@@ -49,6 +51,7 @@ const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnInd
 
   return (
     <div>
+      <Header/>
       <Title
         card={card}
         editable={!!Session.user && Session.user.userId === card.user.userId}
@@ -70,27 +73,15 @@ const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnInd
         card={card}
         handleSave={handleSave}
       />
-      <DueDate dueDate={card.dueDate}/>
-      <Attachments attachments={card.attachments}/>
-    </div>
-  )
-};
-
-const DueDate: React.FC<{dueDate: string}> = ({dueDate}) => {
-  return(
-    <div>
-      <h3>DueDate</h3>
-    </div>
-  )
-};
-
-const Attachments: React.FC<{attachments: Attachment[]}> = ({attachments}) => {
-  return(
-    <div>
-      <h3>Attachments</h3>
-      {attachments.map((attachment, i) => (
-        <div key={i}>{attachment.url}</div>
-      ))}
+      <DueDate
+        card={card}
+        editable={!!Session.user && Session.user.userId === card.user.userId}
+        handleSave={handleSave}
+      />
+      <Attachments
+        card={card}
+        handleSave={handleSave}
+      />
     </div>
   )
 };

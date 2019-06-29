@@ -50,18 +50,15 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
                 <div className="card" key={cardIndex}>
                   <Link to={`/board/${kanbanboardId}/${columnIndex}/${cardIndex}`}>
                     <h3>{card.title}</h3>
-                    {card.description}
                     {card.user.displayName}
                     {card.user.pictureUrl ? (
                       <img src={card.user.pictureUrl} alt="" width={30}/>
                     ) : null}
-                    {card.comments.map((comment, i) => {
-                      return (
-                        <div key={i}>
-                          {comment}
-                        </div>
-                      )
-                    })}
+                    {card.attachments.length}
+                    {card.comments.length}
+                    {card.checklist.filter(check => check.checked).length}
+                    /
+                    {card.checklist.length}
                   </Link>
                 </div>
               )
