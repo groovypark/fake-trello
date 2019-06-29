@@ -1,10 +1,13 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./KanbanboardComp.css"
 import {subscribeKanbanboard, UnsubscribeFn} from "./kanbanboard/subscribeKanbanboard";
 import {RouteComponentProps} from "react-router";
 import Header from "./Header";
 import {useDispatch, useSelector} from "react-redux";
 import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboard/kanbanboardReducer";
+import {addCard} from "./kanbanboard/addCard";
+import {Kanbanboard} from "./type/Kanbanboard";
+import {addColumn} from "./kanbanboard/addColumn";
 
 const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) => {
   const {
@@ -38,9 +41,9 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
     <div className="kanbanboard">
       <Header/>
       <div className="kanbanboard-title">{kanbanboard.title}</div>
-      {kanbanboard.columns.map((column, i) => {
+      {kanbanboard.columns.map((column, columnIndex) => {
         return (
-          <div className="column" key={i}>
+          <div className="column" key={columnIndex}>
             <h2>{column.title}</h2>
             {column.cards.map((card, i) => {
               return (
@@ -57,20 +60,64 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
                 </div>
               )
             })}
-            <input placeholder="Enter a title"/>
-            <button>add card</button>
+            <AddNewCard kanbanboardId={kanbanboardId} columnIndex={columnIndex} />
           </div>
         )
       })}
 
-      <div className="column">
-        <input placeholder="Enter a title"/>
-        <button>add list</button>
-      </div>
+      <AddNewColumn kanbanboardId={kanbanboardId}/>
     </div>
   )
 };
 
+
+const AddNewColumn: React.FC<{kanbanboardId: string}> = (props) => {
+  const {
+    kanbanboardId
+  } = props;
+
+  const [columnTitle, setColumnTitle] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setColumnTitle(e.target.value)
+  };
+  const handleClick = () => {
+    addColumn(kanbanboardId, columnTitle);
+    setColumnTitle("")
+  };
+
+  return (
+    <div className="column">
+      <input placeholder="Enter a title" onChange={handleChange} value={columnTitle}/>
+      <button onClick={handleClick}>add list</button>
+    </div>
+  )
+};
+
+const AddNewCard: React.FC<{kanbanboardId: string, columnIndex: number}>
+  = (props) => {
+  const {
+    kanbanboardId,
+    columnIndex
+  } = props;
+  const [cardTitle, setCardTitle] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCardTitle(e.target.value)
+  };
+
+  const handleClick = () => {
+    addCard(kanbanboardId, columnIndex, cardTitle);
+    setCardTitle("")
+  };
+
+  return (
+    <div>
+      <input placeholder="Enter a title" onChange={handleChange} value={cardTitle}/>
+      <button onClick={handleClick}>add card</button>
+    </div>
+  )
+}
 
 
 export default KanbanboardComp
