@@ -5,16 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {combineReducers, createStore} from 'redux';
-import boardReducer from './kanbanboard/reducers/kanbanboardReducer';
 import {Provider} from 'react-redux';
 import dashboardReducer from './dashboard/reducers/dashboardReducer';
+import kanbanboardReducer from "./kanbanboard/kanbanboardReducer";
 
 const rootReducer = combineReducers({
-  boardReducer,
+  kanbanboardReducer,
   dashboardReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render((
   <Provider store={store}>

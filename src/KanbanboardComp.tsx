@@ -1,37 +1,43 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import "./KanbanboardComp.css"
-import {getKanbanboard} from "./kanbanboard/getKanbanboard";
+import {subscribeKanbanboard, UnsubscribeFn} from "./kanbanboard/subscribeKanbanboard";
 import {RouteComponentProps} from "react-router";
-import {Kanbanboard} from "./type/Kanbanboard";
+import Header from "./Header";
+import {useDispatch, useSelector} from "react-redux";
+import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboard/kanbanboardReducer";
 
 const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) => {
-
-  const {
-    history
-  } = props;
   const {
     kanbanboardId,
   } = props.match.params;
 
-  useEffect(() => {
-    getKanbanboard(kanbanboardId).then(kanbanboard => {
-      console.log(kanbanboard)
-      setKanbanboard(kanbanboard)
-    }).catch(e => {
+  const dispatch = useDispatch();
 
-      history.push("/")
-    })
+  useEffect(() => {
+    const unsubscribe: UnsubscribeFn = subscribeKanbanboard(kanbanboardId, (kanbanboard) => {
+      dispatch(loadKanbanbaord(kanbanboard))
+    });
+
+    return () => {
+      unsubscribe();
+      dispatch(resetKanbanboard())
+    }
   }, []);
 
-  const [kanbanboard, setKanbanboard] = useState<Kanbanboard | null>(null);
+  const kanbanboardState = useSelector<any, KanbanboardState>(state => state.kanbanboardReducer);
+
+  const {
+    kanbanboard
+  } = kanbanboardState;
 
   if (!kanbanboard) {
     return (<div>Loading...</div>)
   }
 
   return (
-    <div className="board">
-      <h1>{kanbanboard.title}</h1>
+    <div className="kanbanboard">
+      <Header/>
+      <div className="kanbanboard-title">{kanbanboard.title}</div>
       {kanbanboard.columns.map((column, i) => {
         return (
           <div className="column" key={i}>
@@ -48,20 +54,17 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
                       </div>
                     )
                   })}
-
                 </div>
               )
             })}
-
-
-            <input/>
+            <input placeholder="Enter a title"/>
             <button>add card</button>
           </div>
         )
       })}
 
       <div className="column">
-        <input/>
+        <input placeholder="Enter a title"/>
         <button>add list</button>
       </div>
     </div>

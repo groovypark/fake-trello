@@ -1,28 +1,23 @@
 import React, {useEffect, useState} from "react";
-import {DashboardState, loadKanbanboardList, loadUser} from "./dashboard/reducers/dashboardReducer";
+import {DashboardState, loadKanbanboardList, loadUser, resetDashboard} from "./dashboard/reducers/dashboardReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {getKanbanboardList} from "./dashboard/getKanbanboardList";
 import Session from "./session/Session";
 import {Kanbanboard} from "./type/Kanbanboard";
 import {addKanbanboardToDb} from "./dashboard/addKanbanboardToDb";
 import "./Dashboard.css"
-import logoGray from "./fake-trello-logo-gray.png";
-import logoWhite from "./fake-trello-logo-white.png";
-import {signOut} from "./signin/signout";
 import {RouteComponentProps} from "react-router";
 import {deleteKanbanboardFromDb} from "./dashboard/deleteKanbanboardFromDb";
 import {getUser} from "./dashboard/getUser";
 import {Link} from "react-router-dom";
+import Header from "./Header";
 
 
 const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
   const {
-    history,
-    match
+    match,
   } = props;
-  const {
-    userId
-  } = match.params;
+  const { userId } = match.params;
 
   const dashboardState = useSelector<any, DashboardState>(state => state.dashboardReducer);
   const dispatch = useDispatch();
@@ -34,6 +29,10 @@ const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
     getUser(userId).then(user => {
       dispatch(loadUser(user))
     });
+
+    return () => {
+      dispatch(resetDashboard())
+    }
   }, []);
 
   const isMasterUser = !!Session.user && Session.user.userId === userId;
@@ -48,44 +47,12 @@ const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
     })
   };
 
-  const [isDropdownHidden, setIsDropdownHidden] = useState(true);
-  const toggleDropdown = () => {
-    setIsDropdownHidden(!isDropdownHidden)
-  };
-
   return (
     <div>
-      <div className="header">
-        <a><img className="logo"
-                src={logoGray}
-                onMouseOver={e => (e.currentTarget.src = logoWhite)}
-                onMouseOut={e => (e.currentTarget.src = logoGray)}
-                alt="fake-trello-logo"
-        /></a>
-        {!!dashboardState.user ? (
-          <span>
-            {!!dashboardState.user.pictureUrl ? (
-              <img className="profile"
-                   src={dashboardState.user.pictureUrl}
-                   alt="" width={30}
-                   onClick={toggleDropdown}
-              />
-            ) : null}
-          </span>
-        ) : null}
-      </div>
-
-      {isDropdownHidden ? null : (
-        <div>
-          {!!dashboardState.user ? (
-            <div className="profile-dropdown">
-              <div className="dropdown-content">{dashboardState.user.displayName}</div>
-              <div className="dropdown-content signout"><span onClick={() => signOut(history)}>Sign Out</span></div>
-            </div>
-          ) : null}
-        </div>
-      )}
-
+      <Header/>
+      {!!dashboardState.user ? (
+        <h1>{dashboardState.user.displayName}님의 대시보드</h1>
+      ) : null}
       <div className="board-list">
         {dashboardState.kanbanboardList.map((kanbanboard, i) => {
           return (

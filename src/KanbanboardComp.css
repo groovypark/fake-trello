@@ -1,13 +1,25 @@
+.kanbanboard {
+    background: #0079BF;
+    height: 100%;
+}
+
+.kanbanboard-title {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 32px;
+    padding: 15px;
+    color: #fff;
+}
 .column {
     width: 272px;
-    margin: 0 4px;
-    height: 100%;
+    margin: 10px 5px;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
-    background: gray;
+    background: #dfe1e6;
 
+    border-radius: 3px;
     padding: 10px;
 }
 
@@ -18,4 +30,14 @@
     background: white;
 
     margin: 10px 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
 }
