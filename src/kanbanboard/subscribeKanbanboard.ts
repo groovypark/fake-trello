@@ -33,6 +33,7 @@ export const subscribeKanbanboard = (
       id: kanbanboardId
     };
 
+    console.log(kanbanboard)
     onKanbanboard(kanbanboard);
   });
 

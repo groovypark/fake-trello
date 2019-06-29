@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {DashboardState, loadKanbanboardList, loadUser, resetDashboard} from "./dashboard/reducers/dashboardReducer";
+import {DashboardState, loadKanbanboardList, loadUser, resetDashboard} from "./reducers/dashboardReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {getKanbanboardList} from "./dashboard/getKanbanboardList";
-import Session from "./session/Session";
-import {Kanbanboard} from "./type/Kanbanboard";
-import {addKanbanboardToDb} from "./dashboard/addKanbanboardToDb";
+import {getKanbanboardList} from "./getKanbanboardList";
+import Session from "../session/Session";
+import {Kanbanboard} from "../type/Kanbanboard";
+import {addKanbanboardToDb} from "./addKanbanboardToDb";
 import "./Dashboard.css"
 import {RouteComponentProps} from "react-router";
-import {deleteKanbanboardFromDb} from "./dashboard/deleteKanbanboardFromDb";
-import {getUser} from "./dashboard/getUser";
+import {deleteKanbanboardFromDb} from "./deleteKanbanboardFromDb";
+import {getUser} from "./getUser";
 import {Link} from "react-router-dom";
-import Header from "./Header";
+import Header from "../Header";
 
 
 const Dashboard = (props: RouteComponentProps<{userId: string}>) => {

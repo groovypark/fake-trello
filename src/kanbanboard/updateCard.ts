@@ -1,22 +1,7 @@
 import {Card} from "../type/Card";
 import db from "../database/db";
-import Session from "../session/Session";
 
-export const addCard = async (kanbanboardId: string, columnIndex: number, title: string) => {
-  const user = Session.user;
-
-  if (user === null) {
-    throw new Error("Session.user should not be null")
-  }
-  const card: Card = {
-    title: title,
-    description: "",
-    checklist: [],
-    comments: [],
-    dueDate: "", // FIXME
-    attachments: [],
-    user: user
-  };
+export const updateCard = async (kanbanboardId: string, columnIndex: number, cardIndex: number, card: Card) => {
 
   const kanbanboardRef = db.collection("kanbanboards").doc(kanbanboardId);
   const kanbanboardSnapshot = await kanbanboardRef.get();
@@ -32,7 +17,7 @@ export const addCard = async (kanbanboardId: string, columnIndex: number, title:
     columns
   } = kanbanboardData;
 
-  columns[columnIndex].cards.push(card);
+  columns[columnIndex].cards[cardIndex] = card;
 
   await kanbanboardRef.update({columns})
 };

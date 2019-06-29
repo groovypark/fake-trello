@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./Dashboard.css"
+import "./dashboard/Dashboard.css"
 import logoGray from "./fake-trello-logo-gray.png";
 import logoWhite from "./fake-trello-logo-white.png";
 import {signOut} from "./signin/signout";

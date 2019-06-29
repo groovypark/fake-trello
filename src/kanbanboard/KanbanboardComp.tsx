@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import "./KanbanboardComp.css"
-import {subscribeKanbanboard, UnsubscribeFn} from "./kanbanboard/subscribeKanbanboard";
+import {subscribeKanbanboard, UnsubscribeFn} from "./subscribeKanbanboard";
 import {RouteComponentProps} from "react-router";
-import Header from "./Header";
+import Header from "../Header";
 import {useDispatch, useSelector} from "react-redux";
-import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboard/kanbanboardReducer";
-import {addCard} from "./kanbanboard/addCard";
-import {addColumn} from "./kanbanboard/addColumn";
+import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboardReducer";
+import {addCard} from "./addCard";
+import {addColumn} from "./addColumn";
+import {Link} from "react-router-dom";
 
 const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) => {
   const {
@@ -44,22 +45,24 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
         return (
           <div className="column" key={columnIndex}>
             <h2>{column.title}</h2>
-            {column.cards.map((card, i) => {
+            {column.cards.map((card, cardIndex) => {
               return (
-                <div className="card" key={i}>
-                  <h3>{card.title}</h3>
-                  {card.description}
-                  {card.user.displayName}
-                  {card.user.pictureUrl ? (
-                    <img src={card.user.pictureUrl} alt="" width={30}/>
-                  ) : null}
-                  {card.comment.map((comment, i) => {
-                    return (
-                      <div key={i}>
-                        {comment}
-                      </div>
-                    )
-                  })}
+                <div className="card" key={cardIndex}>
+                  <Link to={`/board/${kanbanboardId}/${columnIndex}/${cardIndex}`}>
+                    <h3>{card.title}</h3>
+                    {card.description}
+                    {card.user.displayName}
+                    {card.user.pictureUrl ? (
+                      <img src={card.user.pictureUrl} alt="" width={30}/>
+                    ) : null}
+                    {card.comments.map((comment, i) => {
+                      return (
+                        <div key={i}>
+                          {comment}
+                        </div>
+                      )
+                    })}
+                  </Link>
                 </div>
               )
             })}
