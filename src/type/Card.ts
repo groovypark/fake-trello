@@ -1,3 +1,5 @@
+import {User} from "./User";
+
 export type Card = {
   title: string
   description: string
@@ -5,4 +7,5 @@ export type Card = {
   comment: string[]
   dueDate: string
   attachments: string[]
+  user: User
 }

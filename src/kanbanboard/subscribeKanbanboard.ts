@@ -22,15 +22,13 @@ export const subscribeKanbanboard = (
 
     const {
       title,
-      userDisplayName,
-      userId,
+      user,
       columns
     } = docData;
 
     const kanbanboard: Kanbanboard = {
       title,
-      userDisplayName,
-      userId,
+      user,
       columns,
       id: kanbanboardId
     };

@@ -64,7 +64,7 @@ const Dashboard = (props: RouteComponentProps<{userId: string}>) => {
                 ) : null}
 
                 <h2>{kanbanboard.title}</h2>
-                <div>{kanbanboard.userDisplayName}님의 칸반보드</div>
+                <div>{kanbanboard.user.displayName}님의 칸반보드</div>
             </Link>
           )
         })}
@@ -99,8 +99,7 @@ const AddKanbanboard: React.FC<{ userId: string }> = (props) => {
     const newKanbanboard: Kanbanboard = {
       title,
       columns: [],
-      userId: user.userId,
-      userDisplayName: user.displayName
+      user
     };
     setTitle("");
     await addKanbanboardToDb(newKanbanboard);

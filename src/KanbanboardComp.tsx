@@ -6,7 +6,6 @@ import Header from "./Header";
 import {useDispatch, useSelector} from "react-redux";
 import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboard/kanbanboardReducer";
 import {addCard} from "./kanbanboard/addCard";
-import {Kanbanboard} from "./type/Kanbanboard";
 import {addColumn} from "./kanbanboard/addColumn";
 
 const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) => {
@@ -50,6 +49,10 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
                 <div className="card" key={i}>
                   <h3>{card.title}</h3>
                   {card.description}
+                  {card.user.displayName}
+                  {card.user.pictureUrl ? (
+                    <img src={card.user.pictureUrl} alt="" width={30}/>
+                  ) : null}
                   {card.comment.map((comment, i) => {
                     return (
                       <div key={i}>

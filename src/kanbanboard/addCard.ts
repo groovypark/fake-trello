@@ -1,14 +1,21 @@
 import {Card} from "../type/Card";
 import db from "../database/db";
+import Session from "../session/Session";
 
 export const addCard = async (kanbanboardId: string, columnIndex: number, title: string) => {
+  const user = Session.user;
+
+  if (user === null) {
+    throw new Error("Session.user should not be null")
+  }
   const card: Card = {
     title: title,
     description: "",
     checklist: [],
     comment: [],
     dueDate: "", // FIXME
-    attachments: []
+    attachments: [],
+    user: user
   };
 
   const kanbanboardRef = db.collection("kanbanboards").doc(kanbanboardId);
