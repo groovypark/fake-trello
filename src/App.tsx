@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import Session from "./session/Session";
+import SigninPage from "./signin/SigninPage";
+import SigninWithLineCallbackPage from "./signin/SigninWithLineCallbackPage";
+import Dashboard from "./dashboard/Dashboard";
+import Kanbanboard from "./kanbanboard/Kanbanboard";
+import Card from "./kanbanboard/card/Card";
+
+const Index = () => {
+  const user = Session.user;
+  if (user === null) {
+    return (
+      <SigninPage/>
+    )
+  }
+  return (
+    <Redirect to={`/users/${user.userId}/dashboard`}/>
+  )
+};
+
+const NotFound = () => {
+  return (
+    <h1>404</h1>
+  )
+};
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/signin/line" exact component={SigninWithLineCallbackPage} />
+        <Route path="/" exact component={Index} />
+        <Route path="/users/:userId/dashboard" component={Dashboard} />
+        <Route path="/board/:kanbanboardId" exact component={Kanbanboard} />
+        <Route path="/board/:kanbanboardId/:columnIndex/:cardIndex" component={Card} />
+        <Route component={NotFound}/>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

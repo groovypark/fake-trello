@@ -1,0 +1,50 @@
+.SigninPage {
+    height: 100%;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #F8F9F9;
+    height: 2em;
+    left: 0;
+    padding: 1em .75em;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    height: 2em;
+    margin-right: .75em;
+}
+
+.signin-btn {
+    float: right;
+    background-color: #E2E4E6;
+    border-radius: .4em;
+    box-shadow: 0 2px 0 #CDD2D4;
+    color: hsl(0,0%,30%);
+    display: inline-block;
+    font-size: .8em;
+    line-height: 1.1em;
+    margin: -.4em .25em;
+    padding: .7em 1.3em;
+    text-decoration: none;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-250px) translateY(-40.44px);
+    width: 500px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.9em;
+    line-height: 1.25;
+    margin: 1.3rem 0;
+
+}

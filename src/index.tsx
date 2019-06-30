@@ -4,7 +4,27 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {combineReducers, createStore} from 'redux';
+import {Provider} from 'react-redux';
+import dashboardReducer from './dashboard/reducers/dashboardReducer';
+import kanbanboardReducer from "./kanbanboard/kanbanboardReducer";
+
+const rootReducer = combineReducers({
+  kanbanboardReducer,
+  dashboardReducer
+});
+
+const store = createStore(
+  rootReducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+ReactDOM.render((
+  <Provider store={store}>
+    <App/>
+  </Provider>
+
+), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

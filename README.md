@@ -1,44 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fake Trello
 
-## Available Scripts
+베트남 신규 서비스 모바일PC 웹 개발 사전 과제
 
-In the project directory, you can run:
+## Demo
+[https://trello-7aae3.firebaseapp.com](https://trello-7aae3.firebaseapp.com)
 
-### `npm start`
+## Quick Start
+`.env.local` 파일이 있는 경우 실행할 수 있습니다.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+yarn install
+yarn start
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Detail Guide
 
-### `npm test`
+#### 1. firebase project를 시작합니다.
+- https://firebase.google.com/
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 2. firebase firestore, firebase storage를 세팅합니다.
+- https://console.firebase.google.com
 
-### `npm run build`
+#### 3. line application을 생성하여 로그인 기능을 추가합니다.
+- https://developers.line.biz/en/
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 4. 루트 디렉토리에 `.env.local` 파일을 생성합니다.
+```
+REACT_APP_FIREBASE_API_KEY={YOUR_REACT_APP_FIREBASE_API_KEY}
+REACT_APP_FIREBASE_PROJECT_ID={YOUR_REACT_APP_FIREBASE_PROJECT_ID}
+REACT_APP_LINE_CHANNEL_SECRET={YOUR_REACT_APP_LINE_CHANNEL_SECRET}
+REACT_APP_LINE_CHANNEL_ID={YOUR_REACT_APP_LINE_CHANNEL_ID}
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Requirements
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] 모바일 버전
+- [ ] 데스크탑 버전
+- [x] Login
+- [x] My Profile 조회
+  - [x] 이름
+  - [x] Profile Image
+- [x] Kanban Board 생성
+- [x] Card 생성/수정/삭제
+- [ ] Card 이동
+- [x] Card Detail 요구사항
+  - [x] Title
+  - [x] Description
+  - [x] Checklist
+  - [x] Due Date
+  - [x] Attachment
 
-### `npm run eject`
+# Additional
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] Kanban Board 를 조회하는 Dash Board 구현
+- [x] Firebase 연동을 통한 원격 저장
+  - [x] 원격 저장소 실시간 조회 및 동시 접속 구현
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Libraries
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- typescript
+- react
+- redux, react-redux
+- react-router-dom
+- axios
+- firebase
+- react-calendar
+  
+# Points
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Data flow
+  - React Component - Redux - Firebase 의 단방향 데이터 흐름으로 구성했습니다.
+    - React 에서 Firebase에 데이터 삽입/수정을 실행하면, Firebase의 원격 저장소가 변경되고, [Firebase 리스너](https://firebase.google.com/docs/firestore/query-data/listen)로 인해 리덕스에 반영됩니다. 
+- React Hook
+  - useState, useEffect을 적극적으로 활용했습니다. 
+- Markup
+  - Trello와 유사하게 마크업을 구성했습니다.
