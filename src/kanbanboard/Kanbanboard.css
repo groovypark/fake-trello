@@ -11,7 +11,6 @@
     color: #fff;
 }
 
-
 .column-title {
     font-weight: 700;
     margin-bottom: 10px;
@@ -32,6 +31,14 @@
 .card-link {
     text-decoration: none;
 }
+
+.card-delete-btn {
+    float: right;
+}
+.card-delete-btn:hover {
+    font-weight: bold;
+}
+
 .card {
     overflow: hidden;
     padding: 6px 10px 3px;

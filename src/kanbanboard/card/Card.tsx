@@ -18,7 +18,7 @@ import Header from "../../layout/Header";
 import "./Card.css"
 import {Link} from "react-router-dom";
 
-const Card= (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
+const Card = (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
   const {
     kanbanboardId,
     columnIndex,
@@ -26,7 +26,6 @@ const Card= (props: RouteComponentProps<{kanbanboardId: string; columnIndex: str
   } = props.match.params;
 
   const dispatch = useDispatch();
-
 
   const kanbanboardState = useSelector<any, KanbanboardState>(state => state.kanbanboardReducer);
 
