@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {Card} from "../../type/Card";
-import {Check} from "../../type/Check";
+import {CardType} from "../../type/CardType";
+import {CheckType} from "../../type/CheckType";
 
-export const CheckBox: React.FC<{ index: number, handleSave: (card: Card) => void, check: Check, card: Card, editable: boolean  }>
+export const CheckBox: React.FC<{ index: number, handleSave: (card: CardType) => void, check: CheckType, card: CardType, editable: boolean  }>
   = (props) => {
   const {
     index,
@@ -24,7 +24,7 @@ export const CheckBox: React.FC<{ index: number, handleSave: (card: Card) => voi
 
     checklist[index].checked = !checked;
 
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       checklist
     };
@@ -35,7 +35,7 @@ export const CheckBox: React.FC<{ index: number, handleSave: (card: Card) => voi
     const { checklist } = card;
     checklist.splice(index, 1);
 
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       checklist
     };
@@ -69,7 +69,7 @@ export const CheckBox: React.FC<{ index: number, handleSave: (card: Card) => voi
     } = card;
     e.preventDefault();
     checklist[index].value = checkInput;
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       checklist
     };

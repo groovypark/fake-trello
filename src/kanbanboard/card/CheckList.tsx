@@ -1,10 +1,10 @@
 import * as React from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import {CheckBox} from "./CheckBox";
 import {AddCheck} from "./AddCheck";
 import Session from "../../session/Session";
 
-export const Checklist: React.FC<{ card: Card, handleSave: (card: Card) => void }> = ({card, handleSave}) => {
+export const Checklist: React.FC<{ card: CardType, handleSave: (card: CardType) => void }> = ({card, handleSave}) => {
   const {
     checklist
   } = card;

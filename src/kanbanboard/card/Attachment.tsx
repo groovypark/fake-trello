@@ -1,7 +1,7 @@
 import * as React from "react";
-import {Attachment} from "../../type/Attachment";
+import {AttachmentType} from "../../type/AttachmentType";
 
-export const AttachmentComp: React.FC<{ attachment: Attachment }> = ({attachment}) => {
+export const Attachment: React.FC<{ attachment: AttachmentType }> = ({attachment}) => {
   if (attachment.type.includes("image")) {
     return (
       <div>

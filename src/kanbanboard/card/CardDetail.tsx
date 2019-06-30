@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "../kanbanboardReducer";
 import {subscribeKanbanboard, UnsubscribeFn} from "../subscribeKanbanboard";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import Session from "../../session/Session";
 import {updateCard} from "../updateCard";
 import {Title} from "./Title";
@@ -14,7 +14,7 @@ import {Comments} from "./Comments";
 import {UserInfo} from "./UserInfo";
 import {DueDate} from "./DueDate";
 import {Attachments} from "./Attachments";
-import Header from "../../Header";
+import Header from "../../layout/Header";
 
 const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
   const {
@@ -37,6 +37,7 @@ const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnInd
       unsubscribe();
       dispatch(resetKanbanboard())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!kanbanboardState.kanbanboard) {
@@ -45,7 +46,7 @@ const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnInd
 
   const card = kanbanboardState.kanbanboard.columns[Number(columnIndex)].cards[Number(cardIndex)];
 
-  const handleSave = (card: Card) => {
+  const handleSave = (card: CardType) => {
     updateCard(kanbanboardId, Number(columnIndex), Number(cardIndex), card)
   };
 

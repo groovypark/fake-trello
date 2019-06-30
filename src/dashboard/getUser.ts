@@ -1,12 +1,12 @@
 import db from "../database/db";
-import {User} from "../type/User";
+import {UserType} from "../type/UserType";
 
-export const getUser = async (userId: string): Promise<User> => {
+export const getUser = async (userId: string): Promise<UserType> => {
   const documentSnapshot = await db.collection("users").doc(userId).get();
   const data = documentSnapshot.data();
 
   return {
     ...data,
     userId: documentSnapshot.id
-  } as User
+  } as UserType
 };

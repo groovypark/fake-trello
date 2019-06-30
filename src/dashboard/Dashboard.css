@@ -1,71 +1,12 @@
-.header {
-    height: 32px;
-    position: relative;
-
-    background: #026aa7;
-    overflow: hidden;
-    padding: 4px;
-    z-index: 10;
-}
-
-.logo {
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: 80px 30px;
-    cursor: pointer;
-    display: inline-block;
-    height: 30px;
-}
-
-.profile {
-    border-radius: 100%;
-    float: right;
-    cursor: pointer;
-}
-
-.profile-dropdown {
-    display: block;
-    position: absolute;
-    right: 0;
-    margin: 5px;
-    width: 110px;
-
-    border-radius: 3px;
-    box-shadow: 0 8px 16px -4px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
-    box-sizing: border-box;
-    outline: 0;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.dropdown-content {
-    padding: 10px;
-    color: #172b4d;
-}
-
-img.profile:hover .profile-dropdown {
-    cursor: pointer;
-    display: block;
-}
-
-.signout:hover {
-    background: #298FCA;
-    color: white;
-    cursor: pointer;
-}
-
 .board-list {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
-
     flex: 1 1 100%;
     min-width: 352px;
     padding-left: 4%;
     padding-right: 20px;
-
-    margin-top: 110px;
 }
 
 .board-list-item {
@@ -76,19 +17,63 @@ img.profile:hover .profile-dropdown {
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 3px;
-
     max-width: 1250px;
-
     width: 48%;
-    margin-right: 2%;
+    margin: 1%;
 }
 
 .delete-btn {
     background: none;
     float: right;
-    margin-right: 5px;
+    margin: 5px 10px;
     font-size: 18px;
 }
 .delete-btn:hover {
     font-weight: bolder;
+}
+
+.board-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.board-user {
+    float: right;
+    margin: 25px 15px;
+}
+
+.board-new {
+    background: #F0F2F5 !important;
+    color: #172b4d;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-name {
+    display: inline-block;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #647189;;
+
+    margin: 70px 10px 10px 20px;
+}
+
+.board-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    min-height: 0;
+    outline: 0;
+}
+
+.board-input::placeholder {
+    color: #CDD2D4;
 }

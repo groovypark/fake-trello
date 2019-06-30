@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react";
 import "./KanbanboardComp.css"
 import {subscribeKanbanboard, UnsubscribeFn} from "./subscribeKanbanboard";
 import {RouteComponentProps} from "react-router";
-import Header from "../Header";
+import Header from "../layout/Header";
 import {useDispatch, useSelector} from "react-redux";
 import {KanbanboardState, loadKanbanbaord, resetKanbanboard} from "./kanbanboardReducer";
 import {addCard} from "./addCard";
 import {addColumn} from "./addColumn";
 import {Link} from "react-router-dom";
 
-const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) => {
+const Kanbanboard = (props: RouteComponentProps<{kanbanboardId: string}>) => {
   const {
     kanbanboardId,
   } = props.match.params;
@@ -25,6 +25,7 @@ const KanbanboardComp = (props: RouteComponentProps<{kanbanboardId: string}>) =>
       unsubscribe();
       dispatch(resetKanbanboard())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const kanbanboardState = useSelector<any, KanbanboardState>(state => state.kanbanboardReducer);
@@ -120,7 +121,7 @@ const AddNewCard: React.FC<{kanbanboardId: string, columnIndex: number}>
       <button onClick={handleClick}>add card</button>
     </div>
   )
-}
+};
 
 
-export default KanbanboardComp
+export default Kanbanboard

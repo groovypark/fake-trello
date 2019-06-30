@@ -1,7 +1,7 @@
-import {Card} from "../type/Card";
+import {CardType} from "../type/CardType";
 import db from "../database/db";
 
-export const updateCard = async (kanbanboardId: string, columnIndex: number, cardIndex: number, card: Card) => {
+export const updateCard = async (kanbanboardId: string, columnIndex: number, cardIndex: number, card: CardType) => {
 
   const kanbanboardRef = db.collection("kanbanboards").doc(kanbanboardId);
   const kanbanboardSnapshot = await kanbanboardRef.get();

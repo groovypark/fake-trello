@@ -1,4 +1,4 @@
-import {Card} from "../type/Card";
+import {CardType} from "../type/CardType";
 import db from "../database/db";
 import Session from "../session/Session";
 import * as firebase from "firebase";
@@ -9,7 +9,7 @@ export const addCard = async (kanbanboardId: string, columnIndex: number, title:
   if (user === null) {
     throw new Error("Session.user should not be null")
   }
-  const card: Card = {
+  const card: CardType = {
     title: title,
     description: "",
     checklist: [],

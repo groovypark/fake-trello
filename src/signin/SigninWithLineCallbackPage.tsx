@@ -28,6 +28,7 @@ const SigninWithLineCallbackPage = (props: RouteComponentProps) => {
       history.push("/")
     })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     null

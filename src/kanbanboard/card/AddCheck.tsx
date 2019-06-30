@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useState} from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import Session from "../../session/Session";
 
-export const AddCheck: React.FC<{ card: Card, handleSave: (card: Card) => void }> = ({card, handleSave}) => {
+export const AddCheck: React.FC<{ card: CardType, handleSave: (card: CardType) => void }> = ({card, handleSave}) => {
   const [value, setValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -20,7 +20,7 @@ export const AddCheck: React.FC<{ card: Card, handleSave: (card: Card) => void }
     const {
       checklist
     } = card;
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       checklist: [...checklist, {value, checked: false, user: Session.user}]
     };

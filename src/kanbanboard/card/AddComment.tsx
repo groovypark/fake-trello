@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useState} from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import Session from "../../session/Session";
 
-export const AddComment: React.FC<{ card: Card, handleSave: (card: Card) => void }> = ({card, handleSave}) => {
+export const AddComment: React.FC<{ card: CardType, handleSave: (card: CardType) => void }> = ({card, handleSave}) => {
   const [comment, setComment] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value)
@@ -20,7 +20,7 @@ export const AddComment: React.FC<{ card: Card, handleSave: (card: Card) => void
     const {
       comments
     } = card;
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       comments: [...comments, {value: comment, user: Session.user}]
     };

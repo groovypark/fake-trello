@@ -1,9 +1,9 @@
-import {Kanbanboard} from "../type/Kanbanboard";
+import {KanbanboardType} from "../type/KanbanboardType";
 
 export const LOAD_KANBANBOARD = "kanbanbaord/LOAD_KANBANBOARD";
 export const RESET_KANBANBOARD = "kanbanbaord/RESET_KANBANBOARD";
 
-export const loadKanbanbaord = (kanbanboard: Kanbanboard) => {
+export const loadKanbanbaord = (kanbanboard: KanbanboardType) => {
   return ({
     type: LOAD_KANBANBOARD,
     payload: {
@@ -21,7 +21,7 @@ export const resetKanbanboard = () => {
 type KanbanboardAction = ReturnType<typeof loadKanbanbaord> | ReturnType<typeof resetKanbanboard>;
 
 export type KanbanboardState = {
-  kanbanboard: Kanbanboard | null
+  kanbanboard: KanbanboardType | null
 }
 
 const initialState = {

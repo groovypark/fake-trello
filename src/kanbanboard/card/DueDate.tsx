@@ -1,10 +1,10 @@
 import * as React from "react";
 import {useState} from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import Calendar from "react-calendar";
 import * as firebase from "firebase";
 
-export const DueDate: React.FC<{ card: Card, editable: boolean, handleSave: (card: Card) => void }>
+export const DueDate: React.FC<{ card: CardType, editable: boolean, handleSave: (card: CardType) => void }>
   = ({card, editable, handleSave}) => {
   const {
     dueDate

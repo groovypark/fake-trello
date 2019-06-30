@@ -1,11 +1,11 @@
 import db from "../database/db";
-import {Kanbanboard} from "../type/Kanbanboard";
+import {KanbanboardType} from "../type/KanbanboardType";
 
 export type UnsubscribeFn = () => void;
 
 export const subscribeKanbanboard = (
   kanbanboardId: string,
-  onKanbanboard: (kanbanboard: Kanbanboard) => void
+  onKanbanboard: (kanbanboard: KanbanboardType) => void
 ): UnsubscribeFn => {
   const kanbanboardRef = db.collection("kanbanboards").doc(kanbanboardId);
 
@@ -26,7 +26,7 @@ export const subscribeKanbanboard = (
       columns
     } = docData;
 
-    const kanbanboard: Kanbanboard = {
+    const kanbanboard: KanbanboardType = {
       title,
       user,
       columns,

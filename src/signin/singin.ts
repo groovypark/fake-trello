@@ -1,7 +1,7 @@
 import URI from "urijs";
 import {lineConfig} from "../config/line-config";
 import Axios from "axios";
-import {User} from "../type/User";
+import {UserType} from "../type/UserType";
 
 const LINE_AUTHORIZE_URL = "https://access.line.me/oauth2/v2.1/authorize";
 const LINE_TOKEN_URL = "https://api.line.me/oauth2/v2.1/token";
@@ -36,7 +36,7 @@ type ProfileResponse = {
   pictureUrl?: string
 }
 
-export const getUserFromCode = async (code: string): Promise<User> => {
+export const getUserFromCode = async (code: string): Promise<UserType> => {
   const data = URI().query({
     "grant_type":"authorization_code",
     code,

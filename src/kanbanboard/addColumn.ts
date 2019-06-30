@@ -1,8 +1,8 @@
-import {Column} from "../type/Column";
+import {ColumnType} from "../type/ColumnType";
 import db from "../database/db";
 
 export const addColumn = async (kanbanboardId: string, columnTitle: string) => {
-  const newColumn: Column = {
+  const newColumn: ColumnType = {
     title: columnTitle,
     cards: [],
   };

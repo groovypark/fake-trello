@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useState} from "react";
-import {Card} from "../../type/Card";
-import {Comment} from "../../type/Comment";
+import {CardType} from "../../type/CardType";
+import {CommentType} from "../../type/CommentType";
 
-export const CommentComp: React.FC<{ card: Card, handleSave: (card: Card) => void, commentIndex: number, comment: Comment, editable: boolean }>
+export const Comment: React.FC<{ card: CardType, handleSave: (card: CardType) => void, commentIndex: number, comment: CommentType, editable: boolean }>
   = ({card, handleSave, commentIndex, comment, editable}) => {
 
   const [commentInput, setCommentInput] = useState(comment.value);
@@ -28,7 +28,7 @@ export const CommentComp: React.FC<{ card: Card, handleSave: (card: Card) => voi
     } = card;
     e.preventDefault();
     comments[commentIndex].value = commentInput;
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       comments
     };
@@ -42,7 +42,7 @@ export const CommentComp: React.FC<{ card: Card, handleSave: (card: Card) => voi
     } = card;
     e.preventDefault();
     comments.splice(commentIndex, 1);
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       comments
     };

@@ -1,7 +1,7 @@
 import * as React from "react";
-import {User} from "../../type/User";
+import {UserType} from "../../type/UserType";
 
-export const UserInfo: React.FC<{ user: User }> = ({user}) => {
+export const UserInfo: React.FC<{ user: UserType }> = ({user}) => {
   return (
     <div>
       user: {user.displayName}

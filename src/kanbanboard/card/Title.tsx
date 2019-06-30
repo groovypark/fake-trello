@@ -1,8 +1,8 @@
 import * as React from "react";
 import {useState} from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 
-export const Title: React.FC<{ card: Card, editable: boolean, handleSave: (card: Card) => void }>
+export const Title: React.FC<{ card: CardType, editable: boolean, handleSave: (card: CardType) => void }>
   = ({card, editable, handleSave}) => {
 
   const {
@@ -24,7 +24,7 @@ export const Title: React.FC<{ card: Card, editable: boolean, handleSave: (card:
   };
 
   const handleClick = () => {
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       title: titleInput
     };

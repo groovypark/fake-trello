@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Card} from "../../type/Card";
+import {CardType} from "../../type/CardType";
 import Session from "../../session/Session";
 import {uploadFileToStorage} from "./uploadFileToStorage";
 
-export const AddAttachment: React.FC<{ card: Card, handleSave: (card: Card) => void }>
+export const AddAttachment: React.FC<{ card: CardType, handleSave: (card: CardType) => void }>
   = ({card, handleSave}) => {
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ export const AddAttachment: React.FC<{ card: Card, handleSave: (card: Card) => v
     const {
       attachments
     } = card;
-    const updatedCard: Card = {
+    const updatedCard: CardType = {
       ...card,
       attachments: [...attachments, {url, user: Session.user, type: file.type}]
     };

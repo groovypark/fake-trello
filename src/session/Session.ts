@@ -1,12 +1,12 @@
-import {User} from "../type/User";
+import {UserType} from "../type/UserType";
 
 class Session {
-  setUser = (user: User) => {
+  setUser = (user: UserType) => {
     sessionStorage.setItem("user", JSON.stringify(user));
   }
 
-  get user(): User | null {
-    const user = !!sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user") as string) as User : null;
+  get user(): UserType | null {
+    const user = !!sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user") as string) as UserType : null;
     return user
   }
 
