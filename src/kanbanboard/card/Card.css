@@ -23,7 +23,7 @@
 }
 
 .card-detail-title {
-    width: min-content;
+    width: auto !important;
     color: #172b4d;
     margin-bottom: 5px;
 }

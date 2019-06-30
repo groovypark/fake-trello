@@ -1,6 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import {CardType} from "../../type/CardType";
+import "./Card.css"
 
 export const Title: React.FC<{ card: CardType, editable: boolean, handleSave: (card: CardType) => void }>
   = ({card, editable, handleSave}) => {
