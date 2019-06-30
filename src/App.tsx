@@ -4,7 +4,9 @@ import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom
 import Session from "./session/Session";
 import SigninPage from "./signin/SigninPage";
 import SigninWithLineCallbackPage from "./signin/SigninWithLineCallbackPage";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard/Dashboard";
+import Kanbanboard from "./kanbanboard/Kanbanboard";
+import Card from "./kanbanboard/card/Card";
 
 const Index = () => {
   const user = Session.user;
@@ -31,6 +33,8 @@ const App: React.FC = () => {
         <Route path="/signin/line" exact component={SigninWithLineCallbackPage} />
         <Route path="/" exact component={Index} />
         <Route path="/users/:userId/dashboard" component={Dashboard} />
+        <Route path="/board/:kanbanboardId" exact component={Kanbanboard} />
+        <Route path="/board/:kanbanboardId/:columnIndex/:cardIndex" component={Card} />
         <Route component={NotFound}/>
       </Switch>
     </Router>
