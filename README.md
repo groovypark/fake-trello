@@ -5,6 +5,10 @@
 ## Demo
 [https://trello-7aae3.firebaseapp.com](https://trello-7aae3.firebaseapp.com)
 
+[데모 대시보드](https://trello-7aae3.firebaseapp.com/users/U3533c16808446e4ab4c710ccb088f024/dashboard)  
+본인의 대시보드가 아닌 경우, 제한되는 기능들이 있습니다.  
+로그인을 통해 자신의 대시보드를 생성해 볼 수 있습니다.  
+
 ## Quick Start
 `.env.local` 파일이 있는 경우 실행할 수 있습니다.
 
