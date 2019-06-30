@@ -1,0 +1,87 @@
+.card-detail {
+    margin: 20px;
+    color: #647189;
+}
+
+.card-detail-cancel {
+    font-size: 25px;
+    position: absolute;
+    top: 8.8%;
+    right: 5%;
+    text-decoration: none;
+    color: black;
+}
+
+.detail-title-input {
+    border: none;
+    font-size: 1.9em;
+    font-weight: bold;
+    outline: 0;
+    width: 210px;
+    background: rgba(0,0,0,0);
+    margin-bottom: 5px;
+}
+
+.card-detail-title {
+    width: min-content;
+    color: #172b4d;
+    margin-bottom: 5px;
+}
+
+.user-display-name {
+    text-decoration: none;
+    color: #6b778c;
+    font-weight: bold;
+}
+.card-detail-user {
+    color: #6b778c;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.card-detail-wrapper {
+    margin-bottom: 20px;
+}
+
+.card-detail-content {
+    font-size: 1.17em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-detail-input {
+    border: none;
+    font-size: 13px;
+    outline: 0;
+    width: 210px;
+    padding: 8px 12px;
+    background: rgba(9,30,66,.04);
+    margin: 10px 5px 0 0;
+    border-radius: 3px;
+}
+
+.description-input::placeholder {
+    color: #6b778c;
+}
+
+.description-text {
+    font-size: 14px;
+    font-weight: normal;
+    color: #172b4d;
+    margin-top: 10px;
+}
+
+.description-btn {
+    width: 25px;
+    height: 25px;
+    margin-bottom: -8px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.checkbox-input {
+    border: none;
+    font-size: 14px;
+    outline: 0;
+    background: rgba(0,0,0,0);
+}

@@ -10,8 +10,8 @@ export const Attachments: React.FC<{ card: CardType, handleSave: (card: CardType
   } = card;
 
   return (
-    <div>
-      <h3>Attachments</h3>
+    <div className="card-detail-wrapper">
+      <div className="card-detail-content">Attachments</div>
       {attachments.map((attachment, i) => (
         <Attachment key={i} attachment={attachment}/>
       ))}

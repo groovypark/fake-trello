@@ -30,7 +30,6 @@ export const AddAttachment: React.FC<{ card: CardType, handleSave: (card: CardTy
 
   return (
     <div>
-      <h3>Add Attachment</h3>
       <input type="file" onChange={handleChange}/>
     </div>
   )

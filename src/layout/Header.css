@@ -19,6 +19,7 @@
     border-radius: 100%;
     float: right;
     cursor: pointer;
+    height: 30px;
 }
 
 .profile-dropdown {
@@ -27,7 +28,7 @@
     right: 0;
     margin: 5px;
     width: 110px;
-
+    background: white;
     border-radius: 3px;
     box-shadow: 0 8px 16px -4px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
     box-sizing: border-box;
@@ -39,6 +40,7 @@
 .dropdown-content {
     padding: 10px;
     color: #172b4d;
+    text-decoration: none;
 }
 
 img.profile:hover .profile-dropdown {
@@ -46,7 +48,7 @@ img.profile:hover .profile-dropdown {
     display: block;
 }
 
-.signout:hover {
+.dropdown-content:hover {
     background: #298FCA;
     color: white;
     cursor: pointer;

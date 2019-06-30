@@ -15,8 +15,10 @@ import {UserInfo} from "./UserInfo";
 import {DueDate} from "./DueDate";
 import {Attachments} from "./Attachments";
 import Header from "../../layout/Header";
+import "./Card.css"
+import {Link} from "react-router-dom";
 
-const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
+const Card= (props: RouteComponentProps<{kanbanboardId: string; columnIndex: string; cardIndex: string}>) => {
   const {
     kanbanboardId,
     columnIndex,
@@ -53,38 +55,43 @@ const CardDetail = (props: RouteComponentProps<{kanbanboardId: string; columnInd
   return (
     <div>
       <Header/>
-      <Title
-        card={card}
-        editable={!!Session.user && Session.user.userId === card.user.userId}
-        handleSave={handleSave}
-      />
-      <UserInfo
-        user={card.user}
-      />
-      <Description
-        card={card}
-        editable={!!Session.user && Session.user.userId === card.user.userId}
-        handleSave={handleSave}
-      />
-      <Checklist
-        card={card}
-        handleSave={handleSave}
-      />
-      <Comments
-        card={card}
-        handleSave={handleSave}
-      />
-      <DueDate
-        card={card}
-        editable={!!Session.user && Session.user.userId === card.user.userId}
-        handleSave={handleSave}
-      />
-      <Attachments
-        card={card}
-        handleSave={handleSave}
-      />
+      <Link className="card-detail-cancel" to={`/board/${kanbanboardId}`}>
+        X
+      </Link>
+      <div className="card-detail">
+        <Title
+          card={card}
+          editable={!!Session.user && Session.user.userId === card.user.userId}
+          handleSave={handleSave}
+        />
+        <UserInfo
+          user={card.user}
+        />
+        <Description
+          card={card}
+          editable={!!Session.user && Session.user.userId === card.user.userId}
+          handleSave={handleSave}
+        />
+        <Checklist
+          card={card}
+          handleSave={handleSave}
+        />
+        <Comments
+          card={card}
+          handleSave={handleSave}
+        />
+        <DueDate
+          card={card}
+          editable={!!Session.user && Session.user.userId === card.user.userId}
+          handleSave={handleSave}
+        />
+        <Attachments
+          card={card}
+          handleSave={handleSave}
+        />
+      </div>
     </div>
   )
 };
 
-export default CardDetail;
+export default Card;

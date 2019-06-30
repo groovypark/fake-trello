@@ -11,7 +11,8 @@ export const Checklist: React.FC<{ card: CardType, handleSave: (card: CardType) 
 
 
   return (
-    <div>
+    <div className="card-detail-wrapper">
+      <div className="card-detail-content">Checklist</div>
       {checklist.map((check, i) => {
         const editable = !!Session.user && Session.user.userId === check.user.userId;
         return (

@@ -5,8 +5,7 @@
     align-items: flex-start;
     flex: 1 1 100%;
     min-width: 352px;
-    padding-left: 4%;
-    padding-right: 20px;
+    margin: 0 10px;
 }
 
 .board-list-item {
@@ -58,8 +57,7 @@
     font-size: 16px;
     font-weight: 700;
     color: #647189;;
-
-    margin: 70px 10px 10px 20px;
+    margin: 70px 0 5px 16px;
 }
 
 .board-input {

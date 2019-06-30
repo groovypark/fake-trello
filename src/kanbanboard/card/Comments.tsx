@@ -9,8 +9,8 @@ export const Comments: React.FC<{ card: CardType, handleSave: (card: CardType) =
     comments
   } = card;
   return (
-    <div>
-      <h3>Comments</h3>
+    <div className="card-detail-wrapper">
+      <div className="card-detail-content">Comments</div>
       {comments.map((comment, i) => (
         <Comment
           key={i}
