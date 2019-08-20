@@ -36,30 +36,6 @@ REACT_APP_LINE_CHANNEL_SECRET={YOUR_REACT_APP_LINE_CHANNEL_SECRET}
 REACT_APP_LINE_CHANNEL_ID={YOUR_REACT_APP_LINE_CHANNEL_ID}
 ```
 
-## Requirements
-
-- [x] 모바일 버전
-- [ ] 데스크탑 버전
-- [x] Login
-- [x] My Profile 조회
-  - [x] 이름
-  - [x] Profile Image
-- [x] Kanban Board 생성
-- [x] Card 생성/수정/삭제
-- [ ] Card 이동
-- [x] Card Detail 요구사항
-  - [x] Title
-  - [x] Description
-  - [x] Checklist
-  - [x] Due Date
-  - [x] Attachment
-
-# Additional
-
-- [x] Kanban Board 를 조회하는 Dash Board 구현
-- [x] Firebase 연동을 통한 원격 저장
-  - [x] 원격 저장소 실시간 조회 및 동시 접속 구현
-
 # Libraries
 
 - typescript
@@ -72,6 +48,9 @@ REACT_APP_LINE_CHANNEL_ID={YOUR_REACT_APP_LINE_CHANNEL_ID}
   
 # Points
 
+- Kanban Board 를 조회하는 Dash Board 구현
+- Firebase 연동을 통한 원격 저장
+  - 원격 저장소 실시간 조회 및 동시 접속 구현
 - Data flow
   - React Component - Redux - Firebase 의 단방향 데이터 흐름으로 구성했습니다.
     - React 에서 Firebase에 데이터 삽입/수정을 실행하면, Firebase의 원격 저장소가 변경되고, [Firebase 리스너](https://firebase.google.com/docs/firestore/query-data/listen)로 인해 리덕스에 반영됩니다. 
