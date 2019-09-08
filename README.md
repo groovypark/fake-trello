@@ -1,6 +1,6 @@
 # Fake Trello
 
-베트남 신규 서비스 모바일PC 웹 개발 사전 과제
+Trello Clone하기
 
 ## Demo
 [https://trello-7aae3.firebaseapp.com](https://trello-7aae3.firebaseapp.com)
